@@ -1,7 +1,8 @@
-#include"test.hpp"
+#include "test.hpp"
 #include <cstdlib>
 
-int main() {
+int main()
+{
     test::Test t{"test-id"};
     std::cout << "exiting...\n";
     return EXIT_SUCCESS;
