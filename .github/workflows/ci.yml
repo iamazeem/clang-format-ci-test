@@ -21,7 +21,7 @@ jobs:
       - name: Run clang-format
         run: |
           clang-format --version
-          clang-format --style=file *.hpp *.cpp
+          clang-format --style=file -i *.hpp *.cpp
           git status
           FILES=$(git diff --name-only HEAD HEAD~1 | wc -l)
           if (( FILES > 0 )); then
