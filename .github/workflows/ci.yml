@@ -1,0 +1,22 @@
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Verify clang-format
+        run: |
+          clang-format --version
+
+      - name: Run clang-format
+        run: |
+          git ls-files
