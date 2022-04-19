@@ -23,8 +23,9 @@ jobs:
           clang-format --version
           clang-format --style=file -i *.hpp *.cpp
           git status
-          FILES=$(git diff --name-only HEAD HEAD~1 | wc -l)
-          if (( FILES > 0 )); then
+          FILES=$(git ls-files --full-name *.hpp *.cpp)
+          if [[ -n $FILES ]]; then
+            echo 'formatting changes detected'
             git add .
             git commit -m "ci update: clang-format applied"
             git push
