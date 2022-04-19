@@ -12,7 +12,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      
+
+      - name: Compile
+        run: |
+          g++ main.cpp -o test
+          ./test
+
       - name: Verify clang-format
         run: |
           clang-format --version
