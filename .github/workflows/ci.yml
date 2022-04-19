@@ -18,10 +18,16 @@ jobs:
           g++ main.cpp -o test
           ./test
 
-      - name: Verify clang-format
-        run: |
-          clang-format --version
-
       - name: Run clang-format
         run: |
-          git ls-files
+          clang-format --version
+          clang-format --style=file *.hpp *.cpp
+          git status
+          FILES=$(git diff --name-only HEAD HEAD~1 | wc -l)
+          if (( FILES > 0 )); then
+            git add .
+            git commit -m "ci update: clang-format applied"
+            git push
+          fi
+          echo '--- [DONE] ---'
+
