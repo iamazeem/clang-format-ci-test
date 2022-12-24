@@ -27,10 +27,10 @@ jobs:
           echo "FILES: $FILES"
           if [[ -n $FILES ]]; then
             echo 'formatting changes detected'
-            git config --global user.name 'ci'
-            git config --global user.email 'ci@users.noreply.github.com'
+            git config --global user.name 'iamazeem'
+            git config --global user.email 'iamazeem@users.noreply.github.com'
             git add $FILES
-            git commit -m "automatic ci update: clang-format applied"
+            git commit -m "Automatic clang-format update by CI."
             git push
           fi
           echo '--- [DONE] ---'
