@@ -22,11 +22,19 @@ jobs:
         run: |
           clang-format --version
           clang-format --style=file -i *.hpp *.cpp
-          git status
-          FILES=$(git ls-files --full-name *.hpp *.cpp)
-          echo "FILES: $FILES"
-          if [[ -n $FILES ]]; then
-            echo 'formatting changes detected'
+          DIFF=$(git diff)
+          if [[ -z $DIFF ]]; then
+            echo "Nothing changed! Files are already formatted!"
+          else
+            echo "Running git status"
+            git status
+            echo "--- git diff STARTS ---"
+            echo $DIFF
+            echo "---- git diff ENDS ----"
+            FILES=$(git ls-files --full-name *.hpp *.cpp)
+            echo "FILES:"
+            echo $FILES
+            echo "Pushing newly formatted files"
             git config --global user.name 'iamazeem'
             git config --global user.email 'iamazeem@users.noreply.github.com'
             git add $FILES

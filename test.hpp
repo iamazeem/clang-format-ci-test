@@ -5,8 +5,7 @@
 
 // --- test class ---
 
-namespace test
-{
+namespace test {
 
 class Test final
 {
@@ -28,4 +27,4 @@ Test::~Test() noexcept
     std::cout << m_id << ": destroyed\n";
 }
 
-} // namespace test
+}
